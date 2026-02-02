@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Threads - Understand Your Rhythms</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .font-outfit {
+      font-family: 'Outfit', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .bg-soft-gradient {
+      background: linear-gradient(135deg, #fef2f2 0%, #eff6ff 100%);
+    }
+
+    /* Tactile Thread Animations */
+    @keyframes thread-vibrate {
+      0%, 100% { transform: translateX(0) scaleY(1); }
+      25% { transform: translateX(-0.5px) scaleY(1.02); }
+      75% { transform: translateX(0.5px) scaleY(0.98); }
+    }
+    
+    @keyframes thread-glow-volatile {
+      0%, 100% { 
+        box-shadow: 0 0 8px rgba(244, 63, 94, 0.5), inset 0 0 4px rgba(244, 63, 94, 0.2); 
+        filter: brightness(1);
+      }
+      50% { 
+        box-shadow: 0 0 20px rgba(244, 63, 94, 0.9), inset 0 0 6px rgba(255, 255, 255, 0.3);
+        filter: brightness(1.1);
+      }
+    }
+    
+    @keyframes thread-glow-stable {
+      0%, 100% { 
+        box-shadow: 0 0 6px rgba(52, 211, 153, 0.3);
+        opacity: 0.9;
+      }
+      50% { 
+        box-shadow: 0 0 15px rgba(52, 211, 153, 0.7);
+        opacity: 1;
+      }
+    }
+
+    .animate-thread-volatile {
+      animation: thread-vibrate 0.15s infinite linear, thread-glow-volatile 1.2s infinite ease-in-out;
+    }
+
+    .animate-thread-stable {
+      animation: thread-glow-stable 3s infinite ease-in-out;
+    }
+
+    .thread-stretch {
+      transition: width 1.2s cubic-bezier(0.34, 1.8, 0.64, 1);
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.38.0",
+    "recharts": "https://esm.sh/recharts@^3.7.0"
+  }
+}
+</script>
+</head>
+<body class="bg-slate-50">
+  <div id="root"></div>
+</body>
+</html>
