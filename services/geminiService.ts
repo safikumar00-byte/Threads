@@ -2,11 +2,11 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { DailyLog, WeeklyInsight } from "../types";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const generateWeeklyInsights = async (logs: DailyLog[]): Promise<WeeklyInsight | null> => {
   if (logs.length === 0) return null;
 
+  // Initializing inside the function ensures process.env is accessed only when needed
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
   const relevantLogs = logs.slice(0, 7);
   const logsContext = JSON.stringify(relevantLogs);
 
@@ -19,7 +19,6 @@ export const generateWeeklyInsights = async (logs: DailyLog[]): Promise<WeeklyIn
   3. Generate a "Thread Story": A warm narrative summary of the week's flow.
   4. Generate a "Gentle Forecast": Provide a non-deterministic suggestion about the next day's potential emotional or stress level. 
      CRITICAL: This MUST be based specifically on current trends in sleep quality, stress levels, and energy. 
-     Example: "Tomorrow might be a high-conflict day if sleep stays low." or "Energy looks to be rebounding, making tomorrow a good day for a 'Small Win'."
   5. Provide 2-3 gentle suggestions for mindfulness.
   6. Tone: Observant, suggestive, non-clinical. Use words like "might," "potential," and "rhythm."`;
 
@@ -34,8 +33,8 @@ export const generateWeeklyInsights = async (logs: DailyLog[]): Promise<WeeklyIn
           properties: {
             weekStart: { type: Type.STRING },
             summary: { type: Type.STRING },
-            story: { type: Type.STRING, description: "A narrative story of the week's trends." },
-            forecast: { type: Type.STRING, description: "A gentle suggestion for the upcoming day based on sleep, stress, and energy trends." },
+            story: { type: Type.STRING },
+            forecast: { type: Type.STRING },
             cards: {
               type: Type.ARRAY,
               items: {
